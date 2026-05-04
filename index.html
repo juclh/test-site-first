@@ -14,12 +14,11 @@
 html { scroll-behavior: smooth; }
 body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter', sans-serif; }
 
-/* ── NAV LINKS ── */
+/* ── NAV ── */
 .nl {
   font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400;
-  color: #352721; text-decoration: none;
+  color: #352721; text-decoration: none; position: relative;
   transition: opacity 0.2s ease;
-  position: relative;
 }
 .nl::after {
   content: ''; position: absolute; bottom: -2px; left: 0;
@@ -30,14 +29,42 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 .nl:hover::after { width: 100%; }
 .nl:focus-visible { outline: 2px solid #352721; outline-offset: 3px; }
 
-/* ── EMAIL LINK ── */
 .email-link {
   font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400;
-  color: #352721; text-decoration: none;
-  transition: opacity 0.2s ease;
+  color: #352721; text-decoration: none; transition: opacity 0.2s ease;
 }
 .email-link:hover { opacity: 0.5; }
-.email-link:focus-visible { outline: 2px solid #352721; outline-offset: 3px; }
+
+.nav-inner {
+  max-width: 1440px; margin: 0 auto; padding: 0 48px; height: 76px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative;
+}
+.nav-email-col { flex: 1; }
+.nav-logo-col { flex: 1; display: flex; justify-content: center; align-items: center; }
+.nav-links-col { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 36px; }
+
+/* Hamburger */
+.nav-toggle {
+  display: none; background: none; border: none; cursor: pointer;
+  padding: 8px; flex-direction: column; gap: 5px; margin-left: auto;
+}
+.nav-toggle span {
+  display: block; width: 22px; height: 1.5px; background: #352721;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.nav-toggle.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-toggle.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.nav-toggle:focus-visible { outline: 2px solid #352721; outline-offset: 3px; }
+
+.nav-mobile {
+  display: none; position: absolute; top: 76px; left: 0; right: 0;
+  background: #F9F9F9; border-bottom: 1px solid rgba(53,39,33,0.08);
+  padding: 28px 24px; flex-direction: column; gap: 22px; z-index: 49;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile .nl { font-size: 15px; }
 
 /* ── BUTTONS ── */
 .btn {
@@ -56,6 +83,94 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 .btn-outline-light { background: transparent; color: #F8EFED; border: 1px solid rgba(248,239,237,0.4); }
 .btn-outline-light:hover { border-color: rgba(248,239,237,0.9); transform: translateY(-1px); }
 
+/* ── LAYOUT ── */
+.container { max-width: 1440px; margin: 0 auto; padding: 0 64px; }
+.section-v { padding: 120px 0; }
+.section-v-sm { padding: 112px 0; }
+
+/* ── HERO BLUE ── */
+.hero-blue-pad { padding: 100px 48px 108px; }
+.hero-h1 {
+  font-family: 'Libre Caslon Text', serif; font-weight: 400;
+  font-size: 56px; line-height: 1.15; letter-spacing: -0.02em;
+  color: #352721; margin: 0 0 36px;
+}
+.hero-h1-script {
+  font-family: 'Dancing Script', cursive; font-size: 64px;
+  font-weight: 500; letter-spacing: -0.01em; vertical-align: baseline; line-height: 1;
+}
+.hero-sub {
+  font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.72;
+  color: #352721; font-weight: 400; max-width: 560px; margin: 0 auto; opacity: 0.75;
+}
+
+/* ── IMAGE HERO ── */
+.img-hero-wrap { height: 580px; }
+.img-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 0 48px 56px; text-align: center; z-index: 2; line-height: normal;
+}
+.overlay-line { margin: 0; font-size: 0; }
+.overlay-serif {
+  font-family: 'Libre Caslon Text', serif; font-weight: 400;
+  font-size: 62px; line-height: 1.2; letter-spacing: -0.02em; color: #F8EFED;
+}
+.overlay-script {
+  font-family: 'Dancing Script', cursive; font-weight: 500;
+  font-size: 78px; line-height: 1.1; letter-spacing: -0.01em; color: #F8EFED;
+}
+
+/* ── SERVICES ── */
+.services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 72px; }
+.srow-grid {
+  display: grid; grid-template-columns: 80px 1fr 1fr auto;
+  gap: 48px; align-items: start; padding: 48px 0;
+  border-bottom: 1px solid rgba(53,39,33,0.1);
+}
+.srow-num { font-family: 'Inter', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(53,39,33,0.28); padding-top: 5px; }
+.srow-enquire { padding-top: 5px; white-space: nowrap; }
+
+/* ── WORK ── */
+.work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+.work-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 24px; }
+.work-featured { grid-row: 1 / 3; }
+
+/* ── PHILOSOPHY ── */
+.phil-pad { padding: 144px 64px; }
+.phil-quote {
+  font-family: 'Libre Caslon Text', serif; font-style: italic; font-weight: 400;
+  font-size: 40px; line-height: 1.38; letter-spacing: -0.015em;
+  color: #F8EFED; margin: 0 0 52px;
+}
+
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: center; }
+.about-h2 {
+  font-family: 'Libre Caslon Text', serif; font-weight: 400;
+  font-size: 44px; line-height: 1.2; letter-spacing: -0.02em;
+  color: #352721; margin: 0 0 18px;
+}
+
+/* ── TALENTS ── */
+.talents-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+
+/* ── CONTACT ── */
+.contact-pad { padding: 144px 64px; }
+.contact-h2 {
+  font-family: 'Libre Caslon Text', serif; font-weight: 400;
+  font-size: 58px; line-height: 1.12; letter-spacing: -0.025em;
+  color: #352721; margin: 0 0 26px;
+}
+
+/* ── FOOTER ── */
+.footer-pad { padding: 68px 64px 52px; }
+.footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 72px; }
+.footer-links-wrap { display: flex; gap: 60px; }
+.footer-bottom {
+  border-top: 1px solid rgba(248,239,237,0.08); padding-top: 28px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
 /* ── IMAGE WRAP ── */
 .imgwrap { position: relative; overflow: hidden; }
 .imgwrap img {
@@ -69,16 +184,11 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
   pointer-events: none;
 }
 .img-col {
-  position: absolute; inset: 0;
-  background: rgba(183,211,234,0.12);
+  position: absolute; inset: 0; background: rgba(183,211,234,0.12);
   mix-blend-mode: multiply; pointer-events: none;
 }
 
-/* ── MARQUEE ── */
-@keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.mq-track { display: flex; width: max-content; animation: mq 50s linear infinite; }
-
-/* ── WORK CARD ── */
+/* ── MISC ── */
 .wcard {
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 1px 3px rgba(53,39,33,0.04), 0 4px 16px rgba(53,39,33,0.05), 0 10px 32px rgba(53,39,33,0.03);
@@ -87,34 +197,22 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
   transform: translateY(-5px);
   box-shadow: 0 2px 6px rgba(53,39,33,0.06), 0 8px 28px rgba(53,39,33,0.09), 0 20px 56px rgba(53,39,33,0.06);
 }
-
-/* ── SERVICE ROW ── */
 .srow { transition: background 0.22s ease; cursor: default; }
 .srow:hover { background: rgba(53,39,33,0.025); }
-
-/* ── DIVIDERS ── */
 .div-h { width: 40px; height: 1px; background: rgba(53,39,33,0.2); flex-shrink: 0; }
 .div-h-light { width: 40px; height: 1px; background: rgba(248,239,237,0.25); flex-shrink: 0; }
-
-/* ── GRAIN ── */
 .grain { position: relative; }
 .grain::after {
-  content: ''; position: absolute; inset: 0;
-  opacity: 0.04; pointer-events: none; z-index: 2;
+  content: ''; position: absolute; inset: 0; opacity: 0.04;
+  pointer-events: none; z-index: 2;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
   mix-blend-mode: multiply;
 }
-
-/* ── FOOTER LINKS ── */
 .fl {
   font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400;
-  color: rgba(248,239,237,0.45); text-decoration: none;
-  transition: opacity 0.2s ease;
+  color: rgba(248,239,237,0.45); text-decoration: none; transition: opacity 0.2s ease;
 }
 .fl:hover { color: #F8EFED; }
-.fl:focus-visible { outline: 1px solid rgba(248,239,237,0.5); outline-offset: 3px; }
-
-/* ── TEXT LINK ── */
 .tlink {
   font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400;
   text-transform: uppercase; letter-spacing: 0.12em; color: #352721;
@@ -123,6 +221,97 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
   transition: text-decoration-color 0.2s ease, opacity 0.2s ease;
 }
 .tlink:hover { text-decoration-color: #352721; opacity: 0.65; }
+
+/* ════════════════════════════════
+   TABLET  ≤ 1024px
+════════════════════════════════ */
+@media (max-width: 1024px) {
+  .nav-inner { padding: 0 32px; }
+  .nav-email-col { display: none; }
+  .nav-logo-col { justify-content: flex-start; }
+
+  .container { padding: 0 40px; }
+  .section-v { padding: 88px 0; }
+  .section-v-sm { padding: 80px 0; }
+
+  .hero-blue-pad { padding: 80px 40px 88px; }
+  .hero-h1 { font-size: 44px; margin: 0 0 28px; }
+  .hero-h1-script { font-size: 52px; }
+  .hero-sub { font-size: 16px; }
+
+  .img-hero-wrap { height: 440px; }
+  .overlay-serif { font-size: 44px; }
+  .overlay-script { font-size: 56px; }
+  .img-overlay { padding: 0 40px 44px; }
+
+  .srow-grid { grid-template-columns: 60px 1fr 1fr; gap: 32px; }
+  .srow-enquire { display: none; }
+
+  .phil-pad { padding: 112px 40px; }
+  .phil-quote { font-size: 32px; }
+
+  .about-grid { gap: 56px; }
+  .about-h2 { font-size: 36px; }
+
+  .contact-pad { padding: 112px 40px; }
+  .contact-h2 { font-size: 46px; }
+
+  .footer-pad { padding: 56px 40px 44px; }
+}
+
+/* ════════════════════════════════
+   MOBILE  ≤ 768px
+════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 20px; }
+  .nav-email-col { display: none; }
+  .nav-links-col { display: none; }
+  .nav-logo-col { justify-content: flex-start; flex: 1; }
+  .nav-toggle { display: flex; }
+
+  .container { padding: 0 20px; }
+  .section-v { padding: 64px 0; }
+  .section-v-sm { padding: 56px 0; }
+
+  .hero-blue-pad { padding: 56px 20px 64px; }
+  .hero-h1 { font-size: 32px; line-height: 1.2; margin: 0 0 20px; }
+  .hero-h1-script { font-size: 40px; }
+  .hero-sub { font-size: 14px; line-height: 1.68; }
+  .hero-sub br { display: none; }
+
+  .img-hero-wrap { height: 300px; }
+  .overlay-serif { font-size: 20px; line-height: 1.3; }
+  .overlay-script { font-size: 26px; line-height: 1.2; }
+  .img-overlay { padding: 0 16px 24px; }
+
+  .services-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .srow-grid { grid-template-columns: 1fr; gap: 10px; padding: 32px 0; }
+  .srow-num { display: none; }
+  .srow-enquire { display: none; }
+
+  .work-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .work-grid { grid-template-columns: 1fr; }
+  .work-featured { grid-row: auto; }
+
+  .phil-pad { padding: 72px 20px; }
+  .phil-quote { font-size: 22px; line-height: 1.55; margin: 0 0 36px; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-h2 { font-size: 28px; line-height: 1.3; }
+
+  .talents-grid { grid-template-columns: 1fr; }
+
+  .contact-pad { padding: 72px 20px; }
+  .contact-h2 { font-size: 32px; line-height: 1.2; }
+
+  .footer-pad { padding: 48px 20px 36px; }
+  .footer-top { flex-direction: column; gap: 36px; }
+  .footer-links-wrap { gap: 36px; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+
+  /* Smaller buttons on mobile */
+  .btn { padding: 12px 22px; font-size: 11px; }
+}
 </style>
 </head>
 <body>
@@ -131,26 +320,36 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
      NAVIGATION
 ════════════════════════════════ -->
 <nav style="position:sticky;top:0;z-index:50;background:#F9F9F9;border-bottom:1px solid rgba(53,39,33,0.08);">
-  <div style="max-width:1440px;margin:0 auto;padding:0 48px;height:76px;display:flex;align-items:center;justify-content:space-between;">
+  <div class="nav-inner">
 
-    <!-- Left: email -->
-    <div style="flex:1;">
+    <div class="nav-email-col">
       <a href="mailto:hi@nichedogstudio.com" class="email-link">hi@nichedogstudio.com</a>
     </div>
 
-    <!-- Center: logo -->
-    <div style="flex:1;display:flex;justify-content:center;align-items:center;">
+    <div class="nav-logo-col">
       <a href="#" style="font-family:'Dancing Script',cursive;font-size:26px;font-weight:600;color:#352721;text-decoration:none;letter-spacing:-0.01em;line-height:1;">niche</a>
     </div>
 
-    <!-- Right: nav links -->
-    <div style="flex:1;display:flex;justify-content:flex-end;align-items:center;gap:36px;">
+    <div class="nav-links-col">
       <a href="#work" class="nl">Work</a>
       <a href="#talents" class="nl">Talents</a>
       <a href="#studio" class="nl">About</a>
       <a href="#contact" class="nl">Contact</a>
     </div>
 
+    <!-- Hamburger (mobile only) -->
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+
+  <!-- Mobile dropdown -->
+  <div class="nav-mobile" id="navMenu">
+    <a href="#work" class="nl">Work</a>
+    <a href="#talents" class="nl">Talents</a>
+    <a href="#studio" class="nl">About</a>
+    <a href="#contact" class="nl">Contact</a>
   </div>
 </nav>
 
@@ -158,15 +357,15 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 <!-- ════════════════════════════════
      HERO — LIGHT BLUE, CENTERED
 ════════════════════════════════ -->
-<section style="background:#B7D3EA;padding:100px 48px 108px;text-align:center;position:relative;overflow:hidden;">
+<section style="background:#B7D3EA;text-align:center;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 25% 40%,rgba(248,239,237,0.22) 0%,transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(53,39,33,0.04) 0%,transparent 50%);pointer-events:none;"></div>
-  <div style="max-width:1440px;margin:0 auto;position:relative;z-index:1;">
+  <div class="hero-blue-pad" style="max-width:1440px;margin:0 auto;position:relative;z-index:1;">
 
-    <h1 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:56px;line-height:1.15;letter-spacing:-0.02em;color:#352721;margin:0 0 36px;">
-      It&rsquo;s all about <span style="font-family:'Dancing Script',cursive;font-size:64px;font-weight:500;letter-spacing:-0.01em;vertical-align:baseline;line-height:1;">dogs</span>.
+    <h1 class="hero-h1">
+      It&rsquo;s all about <span class="hero-h1-script">dogs</span>.
     </h1>
 
-    <p style="font-family:'Inter',sans-serif;font-size:17px;line-height:1.72;color:#352721;font-weight:400;max-width:560px;margin:0 auto;opacity:0.75;">
+    <p class="hero-sub">
       Niche est un studio 360° qui donne vie à des<br>
       campagnes de communication et expériences d&rsquo;exception avec des chiens.
     </p>
@@ -179,19 +378,16 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
      HERO — FULL-WIDTH IMAGE
 ════════════════════════════════ -->
 <section style="position:relative;overflow:hidden;line-height:0;">
-  <div class="imgwrap" style="height:580px;border-radius:0;">
+  <div class="imgwrap img-hero-wrap" style="border-radius:0;">
     <img src="https://placehold.co/1440x580/A89080/A89080" alt="Niche Studio" style="border-radius:0;" />
-    <!-- Dark gradient at bottom for text legibility -->
     <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(30,20,18,0.72) 0%,rgba(30,20,18,0.3) 45%,rgba(30,20,18,0.05) 75%,transparent 100%);pointer-events:none;"></div>
     <div class="img-col"></div>
-
-    <!-- Text overlay -->
-    <div style="position:absolute;bottom:0;left:0;right:0;padding:0 48px 56px;text-align:center;z-index:2;line-height:normal;">
-      <p style="margin:0;font-size:0;">
-        <span style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:62px;line-height:1.2;letter-spacing:-0.02em;color:#F8EFED;">Donner vie à des&nbsp;</span><span style="font-family:'Dancing Script',cursive;font-weight:500;font-size:78px;line-height:1.1;letter-spacing:-0.01em;color:#F8EFED;">campagnes</span>
+    <div class="img-overlay">
+      <p class="overlay-line">
+        <span class="overlay-serif">Donner vie à des&nbsp;</span><span class="overlay-script">campagnes</span>
       </p>
-      <p style="margin:0;font-size:0;">
-        <span style="font-family:'Dancing Script',cursive;font-weight:500;font-size:78px;line-height:1.1;letter-spacing:-0.01em;color:#F8EFED;">d&rsquo;exception&nbsp;</span><span style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:62px;line-height:1.2;letter-spacing:-0.02em;color:#F8EFED;">portées par des chiens.</span>
+      <p class="overlay-line">
+        <span class="overlay-script">d&rsquo;exception&nbsp;</span><span class="overlay-serif">portées par des chiens.</span>
       </p>
     </div>
   </div>
@@ -201,10 +397,10 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 <!-- ════════════════════════════════
      SERVICES
 ════════════════════════════════ -->
-<section style="background:#F9F9F9;padding:120px 0;">
-  <div style="max-width:1440px;margin:0 auto;padding:0 64px;">
+<section style="background:#F9F9F9;" class="section-v">
+  <div class="container">
 
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:72px;">
+    <div class="services-header">
       <div>
         <span style="font-family:'Dancing Script',cursive;font-size:34px;color:#5D4C44;display:block;margin-bottom:4px;font-weight:500;line-height:1.2;">what we do</span>
         <h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:46px;line-height:1.15;letter-spacing:-0.02em;color:#352721;margin:0;">Services</h2>
@@ -214,34 +410,34 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 
     <div style="border-top:1px solid rgba(53,39,33,0.1);">
 
-      <div class="srow" style="display:grid;grid-template-columns:80px 1fr 1fr auto;gap:48px;align-items:start;padding:48px 0;border-bottom:1px solid rgba(53,39,33,0.1);">
-        <span style="font-family:'Inter',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.16em;color:rgba(53,39,33,0.28);padding-top:5px;">01</span>
+      <div class="srow srow-grid">
+        <span class="srow-num">01</span>
         <div>
           <h3 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:26px;letter-spacing:-0.01em;color:#352721;margin:0 0 6px;">Photography</h3>
           <span style="font-family:'Inter',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.13em;color:#5D4C44;">Editorial · Commercial · Portrait</span>
         </div>
         <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.75;color:#5D4C44;font-weight:300;margin:0;max-width:400px;">Editorial and commercial photography that captures your dog's genuine character. Every frame is a considered decision.</p>
-        <a href="#contact" class="tlink" style="padding-top:5px;white-space:nowrap;">Enquire →</a>
+        <a href="#contact" class="tlink srow-enquire">Enquire →</a>
       </div>
 
-      <div class="srow" style="display:grid;grid-template-columns:80px 1fr 1fr auto;gap:48px;align-items:start;padding:48px 0;border-bottom:1px solid rgba(53,39,33,0.1);">
-        <span style="font-family:'Inter',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.16em;color:rgba(53,39,33,0.28);padding-top:5px;">02</span>
+      <div class="srow srow-grid">
+        <span class="srow-num">02</span>
         <div>
           <h3 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:26px;letter-spacing:-0.01em;color:#352721;margin:0 0 6px;">Brand Identity</h3>
           <span style="font-family:'Inter',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.13em;color:#5D4C44;">Logo · Palette · Guidelines</span>
         </div>
         <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.75;color:#5D4C44;font-weight:300;margin:0;max-width:400px;">Complete visual identity systems for dog-centric businesses. Logos, palettes, and brand guidelines that feel as premium as they perform.</p>
-        <a href="#contact" class="tlink" style="padding-top:5px;white-space:nowrap;">Enquire →</a>
+        <a href="#contact" class="tlink srow-enquire">Enquire →</a>
       </div>
 
-      <div class="srow" style="display:grid;grid-template-columns:80px 1fr 1fr auto;gap:48px;align-items:start;padding:48px 0;border-bottom:1px solid rgba(53,39,33,0.1);">
-        <span style="font-family:'Inter',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.16em;color:rgba(53,39,33,0.28);padding-top:5px;">03</span>
+      <div class="srow srow-grid">
+        <span class="srow-num">03</span>
         <div>
           <h3 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:26px;letter-spacing:-0.01em;color:#352721;margin:0 0 6px;">Creative Direction</h3>
           <span style="font-family:'Inter',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.13em;color:#5D4C44;">Campaign · Launch · Strategy</span>
         </div>
         <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.75;color:#5D4C44;font-weight:300;margin:0;max-width:400px;">Strategic creative leadership for campaigns and editorial projects. We shape how your audience sees and feels your brand.</p>
-        <a href="#contact" class="tlink" style="padding-top:5px;white-space:nowrap;">Enquire →</a>
+        <a href="#contact" class="tlink srow-enquire">Enquire →</a>
       </div>
 
     </div>
@@ -252,10 +448,10 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 <!-- ════════════════════════════════
      SELECTED WORK
 ════════════════════════════════ -->
-<section id="work" style="background:#F8EFED;padding:120px 0;">
-  <div style="max-width:1440px;margin:0 auto;padding:0 64px;">
+<section id="work" style="background:#F8EFED;" class="section-v">
+  <div class="container">
 
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;">
+    <div class="work-header">
       <div>
         <span style="font-family:'Dancing Script',cursive;font-size:34px;color:#5D4C44;display:block;margin-bottom:4px;font-weight:500;line-height:1.2;">selected work</span>
         <h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:46px;line-height:1.15;letter-spacing:-0.02em;color:#352721;margin:0;">Portfolio</h2>
@@ -263,10 +459,9 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
       <a href="#" class="tlink">View all projects →</a>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:24px;">
+    <div class="work-grid">
 
-      <!-- FEATURED CARD -->
-      <div class="wcard" style="grid-row:1/3;border-radius:6px;overflow:hidden;background:#F9F9F9;">
+      <div class="wcard work-featured" style="border-radius:6px;overflow:hidden;background:#F9F9F9;">
         <div class="imgwrap" style="height:440px;">
           <img src="https://placehold.co/760x440/BFAB97/BFAB97" alt="Harlow & Co." />
           <div class="img-grad"></div>
@@ -285,7 +480,6 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
         </div>
       </div>
 
-      <!-- CARD 2 -->
       <div class="wcard" style="border-radius:6px;overflow:hidden;background:#F9F9F9;">
         <div class="imgwrap" style="height:258px;">
           <img src="https://placehold.co/760x258/B8CCDB/B8CCDB" alt="The Golden Hour" />
@@ -304,7 +498,6 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
         </div>
       </div>
 
-      <!-- CARD 3 -->
       <div class="wcard" style="border-radius:6px;overflow:hidden;background:#F9F9F9;">
         <div class="imgwrap" style="height:258px;">
           <img src="https://placehold.co/760x258/CDD4A4/CDD4A4" alt="Bark & Bloom" />
@@ -331,13 +524,13 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 <!-- ════════════════════════════════
      PHILOSOPHY / QUOTE
 ════════════════════════════════ -->
-<section class="grain" style="background:#352721;padding:144px 64px;position:relative;overflow:hidden;">
+<section class="grain phil-pad" style="background:#352721;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 15% 60%,rgba(93,76,68,0.5) 0%,transparent 65%),radial-gradient(ellipse at 85% 20%,rgba(183,211,234,0.05) 0%,transparent 55%);pointer-events:none;"></div>
   <div style="max-width:1440px;margin:0 auto;position:relative;z-index:1;">
     <div style="max-width:880px;margin:0 auto;text-align:center;">
       <span style="font-family:'Dancing Script',cursive;font-size:30px;color:rgba(248,239,237,0.35);display:block;margin-bottom:48px;font-weight:500;">— our philosophy</span>
       <blockquote style="margin:0;">
-        <p style="font-family:'Libre Caslon Text',serif;font-style:italic;font-weight:400;font-size:40px;line-height:1.38;letter-spacing:-0.015em;color:#F8EFED;margin:0 0 52px;">&ldquo;We believe every dog has a story that deserves to be told with intention, care, and a great deal of love.&rdquo;</p>
+        <p class="phil-quote">&ldquo;We believe every dog has a story that deserves to be told with intention, care, and a great deal of love.&rdquo;</p>
       </blockquote>
       <div style="display:flex;align-items:center;justify-content:center;gap:18px;">
         <div class="div-h-light"></div>
@@ -352,9 +545,9 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 <!-- ════════════════════════════════
      ABOUT / STUDIO
 ════════════════════════════════ -->
-<section id="studio" style="background:#F9F9F9;padding:120px 0;">
-  <div style="max-width:1440px;margin:0 auto;padding:0 64px;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center;">
+<section id="studio" style="background:#F9F9F9;" class="section-v">
+  <div class="container">
+    <div class="about-grid">
 
       <div class="imgwrap" style="height:560px;border-radius:6px;">
         <img src="https://placehold.co/680x560/C5B5AF/C5B5AF" alt="The Studio" style="border-radius:6px;" />
@@ -364,7 +557,7 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 
       <div>
         <span style="font-family:'Inter',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.22em;color:#5D4C44;display:block;margin-bottom:22px;">The Studio</span>
-        <h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:44px;line-height:1.2;letter-spacing:-0.02em;color:#352721;margin:0 0 18px;">Born from a love<br>of <em>dogs and design.</em></h2>
+        <h2 class="about-h2">Born from a love<br>of <em>dogs and design.</em></h2>
         <span style="font-family:'Dancing Script',cursive;font-size:30px;color:#5D4C44;display:block;margin-bottom:32px;font-weight:500;line-height:1.2;">dog era</span>
         <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.78;color:#5D4C44;font-weight:300;margin:0 0 18px;">Niche is a boutique creative studio dedicated entirely to the world of dogs. We work with individuals, brands, and businesses to create visual work that's as extraordinary as the animals at the center of it.</p>
         <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.78;color:#5D4C44;font-weight:300;margin:0 0 48px;">Every project starts with a conversation, not a brief. We listen. We observe. We find the niche.</p>
@@ -379,17 +572,17 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 <!-- ════════════════════════════════
      TALENTS
 ════════════════════════════════ -->
-<section id="talents" style="background:#F8EFED;padding:112px 0;border-top:1px solid rgba(53,39,33,0.07);">
-  <div style="max-width:1440px;margin:0 auto;padding:0 64px;">
-    <div style="display:flex;align-items:center;gap:20px;margin-bottom:72px;">
+<section id="talents" style="background:#F8EFED;border-top:1px solid rgba(53,39,33,0.07);" class="section-v-sm">
+  <div class="container">
+    <div style="display:flex;align-items:center;gap:20px;margin-bottom:56px;">
       <div class="div-h"></div>
       <span style="font-family:'Inter',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.22em;color:#5D4C44;">Our talents</span>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;">
+    <div class="talents-grid">
 
       <div class="wcard" style="border-radius:6px;overflow:hidden;background:#F9F9F9;">
         <div class="imgwrap" style="height:320px;">
-          <img src="https://placehold.co/480x320/C5B5AF/C5B5AF" alt="Talent" />
+          <img src="https://placehold.co/480x320/C5B5AF/C5B5AF" alt="Léa Martin" />
           <div class="img-grad"></div>
           <div class="img-col"></div>
         </div>
@@ -401,7 +594,7 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 
       <div class="wcard" style="border-radius:6px;overflow:hidden;background:#F9F9F9;">
         <div class="imgwrap" style="height:320px;">
-          <img src="https://placehold.co/480x320/BFAB97/BFAB97" alt="Talent" />
+          <img src="https://placehold.co/480x320/BFAB97/BFAB97" alt="Jules Renard" />
           <div class="img-grad"></div>
           <div class="img-col"></div>
         </div>
@@ -413,7 +606,7 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 
       <div class="wcard" style="border-radius:6px;overflow:hidden;background:#F9F9F9;">
         <div class="imgwrap" style="height:320px;">
-          <img src="https://placehold.co/480x320/B8CCDB/B8CCDB" alt="Talent" />
+          <img src="https://placehold.co/480x320/B8CCDB/B8CCDB" alt="Sofia Dumont" />
           <div class="img-grad"></div>
           <div class="img-col"></div>
         </div>
@@ -431,11 +624,11 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 <!-- ════════════════════════════════
      CONTACT CTA
 ════════════════════════════════ -->
-<section id="contact" class="grain" style="background:#B7D3EA;padding:144px 64px;text-align:center;position:relative;overflow:hidden;">
+<section id="contact" class="grain contact-pad" style="background:#B7D3EA;text-align:center;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(248,239,237,0.32) 0%,transparent 55%),radial-gradient(ellipse at 75% 80%,rgba(53,39,33,0.05) 0%,transparent 50%);pointer-events:none;"></div>
   <div style="max-width:1440px;margin:0 auto;position:relative;z-index:1;">
     <span style="font-family:'Dancing Script',cursive;font-size:34px;color:rgba(53,39,33,0.4);display:block;margin-bottom:26px;font-weight:500;">ready when you are</span>
-    <h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:58px;line-height:1.12;letter-spacing:-0.025em;color:#352721;margin:0 0 26px;">Let&rsquo;s tell your<br><em>dog&rsquo;s story.</em></h2>
+    <h2 class="contact-h2">Let&rsquo;s tell your<br><em>dog&rsquo;s story.</em></h2>
     <p style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.75;color:#5D4C44;font-weight:300;max-width:440px;margin:0 auto 52px;">We take on a limited number of projects each season to ensure every client receives our complete attention.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
       <a href="mailto:hi@nichedogstudio.com" class="btn btn-dark">hi@nichedogstudio.com</a>
@@ -448,17 +641,17 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
 <!-- ════════════════════════════════
      FOOTER
 ════════════════════════════════ -->
-<footer class="grain" style="background:#352721;padding:68px 64px 52px;position:relative;overflow:hidden;">
+<footer class="grain footer-pad" style="background:#352721;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 8% 85%,rgba(93,76,68,0.5) 0%,transparent 55%);pointer-events:none;"></div>
   <div style="max-width:1440px;margin:0 auto;position:relative;z-index:1;">
 
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:72px;">
+    <div class="footer-top">
       <div style="max-width:300px;">
         <a href="#" style="font-family:'Dancing Script',cursive;font-size:28px;font-weight:600;color:#F8EFED;text-decoration:none;display:block;margin-bottom:12px;">niche</a>
         <span style="font-family:'Inter',sans-serif;font-size:11px;color:rgba(248,239,237,0.32);text-transform:uppercase;letter-spacing:0.18em;display:block;margin-bottom:18px;">Creative Dog Studio</span>
         <p style="font-family:'Inter',sans-serif;font-size:13px;line-height:1.7;color:rgba(248,239,237,0.38);font-weight:300;margin:0;">Boutique creative studio dedicated to exceptional work for dogs and the people who love them.</p>
       </div>
-      <div style="display:flex;gap:60px;">
+      <div class="footer-links-wrap">
         <div>
           <p style="font-family:'Inter',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.16em;color:rgba(248,239,237,0.22);margin:0 0 20px;">Studio</p>
           <div style="display:flex;flex-direction:column;gap:13px;">
@@ -478,13 +671,28 @@ body { background-color: #F9F9F9; color: #352721; margin: 0; font-family: 'Inter
       </div>
     </div>
 
-    <div style="border-top:1px solid rgba(248,239,237,0.08);padding-top:28px;display:flex;justify-content:space-between;align-items:center;">
+    <div class="footer-bottom">
       <span style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(248,239,237,0.2);">&copy; 2026 Niche Studio. All rights reserved.</span>
       <a href="mailto:hi@nichedogstudio.com" style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(248,239,237,0.2);text-decoration:none;transition:opacity 0.2s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">hi@nichedogstudio.com</a>
     </div>
 
   </div>
 </footer>
+
+<script>
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('navMenu');
+  toggle.addEventListener('click', function() {
+    menu.classList.toggle('open');
+    toggle.classList.toggle('active');
+  });
+  menu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      menu.classList.remove('open');
+      toggle.classList.remove('active');
+    });
+  });
+</script>
 
 </body>
 </html>
